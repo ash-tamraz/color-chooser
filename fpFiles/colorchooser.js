@@ -21,16 +21,16 @@ window.onload = function(){
   // button to move backwards by 8 colors
   document.getElementById("back").addEventListener("click", prevEightColors, false);
 
-  // button to reset empty color slots 
+  // button to reset empty color slots
   document.getElementById("reset").addEventListener("click", resetButton, false);
 
-  // button to save ansi colors 
+  // button to save ansi colors
   document.getElementById("save").addEventListener("click", saveButton, false);
 
-  // button to load ansi colors 
+  // button to load ansi colors
   document.getElementById("load").addEventListener("click", loadButton, false);
 
-  // adding event listeners for tag selector buttons  
+  // adding event listeners for tag selector buttons
   let buttons = document.getElementsByClassName("tagSelect");
 
   // using this forEach so don't have to do each
@@ -54,7 +54,7 @@ window.onload = function(){
 
 // ------new
 /*
-  Helper function that adds dragover and drop event listeners for 
+  Helper function that adds dragover and drop event listeners for
   elements color0, ... , color7, of the colorchoose
   div element.
 
@@ -64,31 +64,31 @@ window.onload = function(){
 */
 function ondropForColorChooseElts(){
 
-  //  HTMLColleciton object of all child elements 
+  //  HTMLColleciton object of all child elements
   //  of div "colorchoose". (they're just divs)
   let objs =  document.getElementById("colorchoose").children;
 
-	function addDragListeners(element, index, array){
+  function addDragListeners(element, index, array){
 
-		element.addEventListener("dragover", dragOverHelperFunction, false);
-		element.addEventListener("drop", dropHelperFunction, false);
-  
-	}//end addDragListeners
+    element.addEventListener("dragover", dragOverHelperFunction, false);
+    element.addEventListener("drop", dropHelperFunction, false);
 
-	Array.from(objs).forEach(addDragListeners);
+  }//end addDragListeners
+
+  Array.from(objs).forEach(addDragListeners);
 
 } // end function ()
 
 /*
-	Helper for dragover events. 
-  
+  Helper for dragover events.
+
   Elements by default don't allow elements to be dragged
   into them, so this prevents that default and enables
   dropping an element into the target.
 */
 function dragOverHelperFunction(ev){
 
-	ev.preventDefault();
+  ev.preventDefault();
 
 }
 
@@ -97,7 +97,7 @@ function dragOverHelperFunction(ev){
 
   Gets data from the dragged element (the id of the dragged
   element), and then sets the backgroundColor of the target
-  element. 
+  element.
 
   Setting background color instead of adding child elements,
   to avoid confusion of whether or not to remove chosen color
@@ -106,31 +106,31 @@ function dragOverHelperFunction(ev){
 */
 function dropHelperFunction(ev){
 
-	ev.preventDefault();
+  ev.preventDefault();
 
-	let data = ev.dataTransfer.getData("text");
+  let data = ev.dataTransfer.getData("text");
 
-	ev.target.style.backgroundColor = 
+  ev.target.style.backgroundColor =
     document.getElementById(data).style.backgroundColor;
 
-	ev.target.style.cursor = "pointer";
+  ev.target.style.cursor = "pointer";
 
-	// resetting background color to initial value if
-  // element being dragged was in 'colorchoose' div 
-	if(/color[0-7]/.test(data)){
+  // resetting background color to initial value if
+  // element being dragged was in 'colorchoose' div
+  if(/color[0-7]/.test(data)){
 
-		document.getElementById(data).style.backgroundColor = 
-			"initial";
-  	document.getElementById(data).setAttribute("draggable", "false");
+    document.getElementById(data).style.backgroundColor =
+      "initial";
+    document.getElementById(data).setAttribute("draggable", "false");
 
-		document.getElementById(data).style.cursor = "default";
-	}
+    document.getElementById(data).style.cursor = "default";
+  }
 
-  // now want to make the target div draggable, so 
+  // now want to make the target div draggable, so
   // user can move color to a different slot if they
   // change their mind
-	ev.target.setAttribute("draggable", "true");
-	ev.target.addEventListener("dragstart", dragStartFunc, false);
+  ev.target.setAttribute("draggable", "true");
+  ev.target.addEventListener("dragstart", dragStartFunc, false);
 
 }// end function dropHelperFunction(ev){
 
@@ -138,33 +138,33 @@ function dropHelperFunction(ev){
 
 function hideLoadAndSave(targetId, oper){
 
-	// storing colorchoose div in this var
-	let ccDiv = document.getElementById("colorchoose");
+  // storing colorchoose div in this var
+  let ccDiv = document.getElementById("colorchoose");
 
-	// storing colorlist div in this var
-	let cLDiv = document.getElementById("colorlist");
-	
-	// storing tagAndListContainer div
-	let tALCDiv = document.getElementById("tagAndListContainer");
+  // storing colorlist div in this var
+  let cLDiv = document.getElementById("colorlist");
 
-	// storing container for save and load divs
-	let sALDiv = document.getElementById("saveAndLoad");
+  // storing tagAndListContainer div
+  let tALCDiv = document.getElementById("tagAndListContainer");
 
-	// getting target div to unhide 
-	let target = document.getElementById(targetId);
+  // storing container for save and load divs
+  let sALDiv = document.getElementById("saveAndLoad");
 
-	cLDiv.style.display = ( oper === "hide"? "none" : "initial" );
-	ccDiv.style.display = "none";
-	tALCDiv.style.display = "none";
-	sALDiv.style.display = "initial";
-	target.style.display = "flex";
+  // getting target div to unhide
+  let target = document.getElementById(targetId);
 
-	let targetDivNodes = target.children;
+  cLDiv.style.display = ( oper === "hide"? "none" : "initial" );
+  ccDiv.style.display = "none";
+  tALCDiv.style.display = "none";
+  sALDiv.style.display = "initial";
+  target.style.display = "flex";
 
-	function unhide(element, array, index){
-		element.className = "donthide";
-	}
-	Array.from(targetDivNodes).forEach(unhide);
+  let targetDivNodes = target.children;
+
+  function unhide(element, array, index){
+    element.className = "donthide";
+  }
+  Array.from(targetDivNodes).forEach(unhide);
 
 
 }// end function hideLoadAndSave(targetId){
@@ -177,10 +177,10 @@ function hideLoadAndSave(targetId, oper){
 */
 function loadButton(){
 
-	hideLoadAndSave("userinputload");
+  hideLoadAndSave("userinputload");
 
 /*
-  //  getting child nodes  
+  //  getting child nodes
   let objs =  document.getElementById("colorchoose").children;
 
   //  hiding elements
@@ -201,7 +201,7 @@ function loadButton(){
     Array.from(usrinArr)[i].className = "donthide";
   }
 
-  //  hiding other elements don't want seen while this 
+  //  hiding other elements don't want seen while this
   //  process happens
   document.getElementById("userinput").className = "hide";
   usrinArr = document.getElementById("userinput").children;
@@ -222,21 +222,21 @@ function loadButton(){
 
 /*
   helper function that is onclick function for
-	load submit button. sends POST request to the
-	service with the user input as the POST body
+  load submit button. sends POST request to the
+  service with the user input as the POST body
 */
 function submitLoad(){
 
-	//  getting value to send
-  let name = document.getElementById("nameToLoad").value; 
+  //  getting value to send
+  let name = document.getElementById("nameToLoad").value;
 
-	//  url for fetch path
-	//  giving a different path, so it goes to 
-	//  post request for instances of just loading
-	//  user data
+  //  url for fetch path
+  //  giving a different path, so it goes to
+  //  post request for instances of just loading
+  //  user data
   let fetchUrl = "http://localhost:3000/load";
 
-  let tosend = { "name" : name };  
+  let tosend = { "name" : name };
 
   let options = { method: 'POST',
                   credentials: 'include',
@@ -244,17 +244,17 @@ function submitLoad(){
                       'Content-Type': 'application/json' },
                   body: JSON.stringify(tosend)};
 
-	//  fetching
+  //  fetching
   fetch(fetchUrl, options)
     .then(function(response){
       return response.text();
     })
-    .then( function(rtext){ 
-			/*
+    .then( function(rtext){
+      /*
          injecting returned data from service
          in this thread to avoid headaches of
          the asynchronous nature of fetch
-			*/
+      */
       let found = JSON.parse(rtext);
       let objs = document.getElementById("colorchoose").children;
 
@@ -269,14 +269,14 @@ function submitLoad(){
 
 
       //  injecting loaded color information here
-      objs = document.querySelectorAll("#colorchoose > div[id*=color]"); 
+      objs = document.querySelectorAll("#colorchoose > div[id*=color]");
 
       function getBGColor(element, index){
         element.className = "donthide";
         element.style.backgroundColor = "rgb("+
           found.usercolors[index].r+","+
           found.usercolors[index].g+","+
-          found.usercolors[index].b+")";  
+          found.usercolors[index].b+")";
       }
       Array.from(objs).forEach(getBGColor);
 
@@ -304,8 +304,8 @@ function saveButton(){
     their .style.backgroundColor values, then can
     send values to service
   */
-  
-  //  getting child nodes  
+
+  //  getting child nodes
   let objs =  document.getElementById("colorchoose").children;
 
   //  hiding elements we don't need right now
@@ -333,35 +333,35 @@ function saveButton(){
   helper function for onclick function for saving
   functionality's submit button
   reads color values currently in users color area
-  and then sends them to the service via a POST 
+  and then sends them to the service via a POST
   request. the server will store the values
-  along with the name of the ANSI colors with 
+  along with the name of the ANSI colors with
   MongoDB
 */
 function submitSave(){
 
   //  array for the bg color values
   let array = [];
-  
-  //  getting child nodes  
+
+  //  getting child nodes
   let objs =  document.getElementById("colorchoose").children;
 
-	//  making array of color values
+  //  making array of color values
   function getBGColor(element){
     array.push(element.style.backgroundColor);
   }
   Array.from(objs).forEach(getBGColor);
 
   //  getting "name" user input
-  let name = document.getElementById("name").value; 
+  let name = document.getElementById("name").value;
 
   let fetchUrl = "http://localhost:3000/save";
 
   //  sanitizing color information before sending
   //  to service
-  let arrayToSend = sanitizeUserColors(array); 
+  let arrayToSend = sanitizeUserColors(array);
 
-  let tosend = { "name" : name, "userdata": arrayToSend  };  
+  let tosend = { "name" : name, "userdata": arrayToSend  };
 
   let options = { method: 'POST',
                   credentials: 'include',
@@ -369,21 +369,21 @@ function submitSave(){
                       'Content-Type': 'application/json' },
                   body: JSON.stringify(tosend)};
 
-  //  fetching 
+  //  fetching
   fetch( fetchUrl, options)
     .then( function(response){
-       return response.text(); 
+       return response.text();
       })
-    .then( function(rtext){ 
-			/*
+    .then( function(rtext){
+      /*
         just saving, so on return, will just
         hide and unhide elements as needed
-			*/
+      */
       let objs =  document.getElementById("colorchoose").children;
 
       // hide/unhide things again
       document.getElementById("userinput").className = "hide";
-  
+
       let usrinArr = document.getElementById("userinput").children;
 
       for(let i=0; i<Array.from(usrinArr).length; i++){
@@ -392,7 +392,7 @@ function submitSave(){
 
       let obj = document.getElementById("colorchoose").firstChild;
       for(let i=0; i<9; i++){
-        obj.className = "donthide";  
+        obj.className = "donthide";
         obj = obj.nextElementSibling;
       }
 
@@ -425,9 +425,9 @@ function rehideElts(){
   caller
 */
 function sanitizeUserColors(arr){
-  
+
   let userJson = [];
-  
+
   //  regex patterns used to help with sanitizing
   //  this looks for 1 or more digits
   let patt0 = /\d+/i;
@@ -442,10 +442,10 @@ function sanitizeUserColors(arr){
   //  that was passed in as a parameter
   function sanitize(element, index, array){
 
-    //  if there are no non-whitespace 
+    //  if there are no non-whitespace
     //  chars, discard junk element
     if(!element.match(patt1)){
-      array.pop(element);  
+      array.pop(element);
     }
     if(element.match(patt1)){
       // first split element along ','
@@ -458,11 +458,11 @@ function sanitizeUserColors(arr){
 
       tempjson = { "r": temp[0].replace(patt2, ""),
                 "g" : temp[1].replace(patt2, ""),
-                "b"  :  temp[2].replace(patt2, "")};  
+                "b"  :  temp[2].replace(patt2, "")};
 
       userJson.push(tempjson);
       }
-    }  
+    }
   arr.forEach(sanitize);
 
   return userJson;
@@ -475,13 +475,13 @@ function sanitizeUserColors(arr){
 */
 function resetButton(){
 
-  //  HTMLColleciton object of all child elements 
+  //  HTMLColleciton object of all child elements
   //  of div "colorchoose". (they're just divs)
   let objs =  document.getElementById("colorchoose").children;
-  
+
   /*
     callback function to reset all of the child
-    nodes of 'colorchoose' to their initial 
+    nodes of 'colorchoose' to their initial
     color property, 'resetting' the color chooser
   */
   function resetBGColor(element){
@@ -512,14 +512,14 @@ function selectColors(event){
 
     emptyslot = document.getElementById("colorchoose").firstElementChild;
 
-    
+
   }
-  
+
   console.log("client: id of empty slot "+object.id);
   emptyslot.style.backgroundColor = object.style.backgroundColor;
-  
+
   emptyslot.className = "filled";
-  
+
 } // end function selectColorTags(event)
 
 function selectColorTags(event){
@@ -541,7 +541,7 @@ function selectColorTags(event){
   // then query db
   let fetchUrl = "http://localhost:3000";
 
-  let tosend = { "tag" : passedInColor };  
+  let tosend = { "tag" : passedInColor };
 
 
   let options = { method: 'POST',
@@ -552,12 +552,12 @@ function selectColorTags(event){
 
   fetch( fetchUrl, options)
   .then( function(response){
-     return response.text(); 
+     return response.text();
     })
   .then( function(rtext){
      return injectData(JSON.parse(rtext), "tagcolorlist") ;
   });
-  
+
 }//end function selectColors
 
 function prevEightColors(){
@@ -567,10 +567,10 @@ function prevEightColors(){
   if(document.getElementById("colorlist").className == "hide"){
     targetDiv = "tagcolorlist";
   }
-  
 
-  let firstObj = document.querySelectorAll("#"+targetDiv+" > .donthide");  
-  
+
+  let firstObj = document.querySelectorAll("#"+targetDiv+" > .donthide");
+
   /*
     hide the first 8 elements
   */
@@ -578,15 +578,15 @@ function prevEightColors(){
     element.className = "hide";
   }
   Array.from(firstObj).forEach(changeClass);
-  
-  let tempObj = firstObj[0].previousSibling; 
+
+  let tempObj = firstObj[0].previousSibling;
   /*
     unhide the next 8 elements
   */
   for(let i=0; i<8; i++){
     tempObj.className = "donthide";
 
-    tempObj = tempObj.previousSibling;  
+    tempObj = tempObj.previousSibling;
 
   }
 
@@ -599,10 +599,10 @@ function nextEightColors(){
   if(document.getElementById("colorlist").className == "hide"){
     targetDiv = "tagcolorlist";
   }
-  
 
-  let firstObj = document.querySelectorAll("#"+targetDiv+" > .donthide");  
-  
+
+  let firstObj = document.querySelectorAll("#"+targetDiv+" > .donthide");
+
 
   /*
     hide the first 8 elements
@@ -611,15 +611,15 @@ function nextEightColors(){
     element.className = "hide";
   }
   Array.from(firstObj).forEach(changeClass);
-  
-  let tempObj = firstObj[7].nextSibling; 
+
+  let tempObj = firstObj[7].nextSibling;
   /*
     unhide the next 8 elements
   */
   for(let i=0; i<8; i++){
     tempObj.className = "donthide";
 
-    tempObj = tempObj.nextSibling;  
+    tempObj = tempObj.nextSibling;
 
   }
 
@@ -628,7 +628,7 @@ function nextEightColors(){
 
 function dragStartFunc(ev){
 
-	ev.dataTransfer.setData("text", ev.target.id);
+  ev.dataTransfer.setData("text", ev.target.id);
 
 }
 
@@ -645,31 +645,31 @@ function injectData(data, targetDivId){
     let tempRgb = 'rgb('+element.rgbVals.r+','+element.rgbVals.g+','+element.rgbVals.b+')';
 
     let tempDiv = document.createElement("DIV");
-    tempDiv.id = index+"-"+(element.name).replace(/\s+/g, "");  
+    tempDiv.id = index+"-"+(element.name).replace(/\s+/g, "");
 
     tempDiv.className = (index < 8 ? "donthide":"hide" );
-    tempDiv.style.backgroundColor = tempRgb; 
-	
-		// changes to make draggable, remove if break 
-		tempDiv.setAttribute("draggable", "true");
-		tempDiv.addEventListener("dragstart", dragStartFunc, false);
-		// end changes for draggability
+    tempDiv.style.backgroundColor = tempRgb;
 
-    tempDiv.innerHTML = element.name; 
+    // changes to make draggable, remove if break
+    tempDiv.setAttribute("draggable", "true");
+    tempDiv.addEventListener("dragstart", dragStartFunc, false);
+    // end changes for draggability
+
+    tempDiv.innerHTML = element.name;
 
   /*
     adding event listeners for divs that are currently
-    displayed. doing here because the "hide" and 
+    displayed. doing here because the "hide" and
     "donthide" classnames are set above.
     (was not working when set in window.onload function)
   */
-    //tempDiv.addEventListener("click", selectColors, false);  
+    //tempDiv.addEventListener("click", selectColors, false);
 
     tarDiv.appendChild(tempDiv);
 
 
   }
-  
+
   (Array.from(data)).forEach(makeDivs);
 
 }// end function injectData(data, targetDivId)
@@ -682,16 +682,16 @@ function checkCollection(){
       credentials: 'include' } )
     .then( function(response){
       return response.text();
-    })    
+    })
     .then( function(rtext){
-      console.log("response from server: ", rtext); 
+      console.log("response from server: ", rtext);
     });
 
 }
 
 function populateColorList(){
 
-  
+
   let url = "http://localhost:3000/inject";
 
   fetch(url, {method: 'GET'})
@@ -706,7 +706,7 @@ function populateColorList(){
     .then(function(responseText) {
       //  call helper function to inject
       //  data into html page
-      console.log(responseText);      
+      console.log(responseText);
       injectData(JSON.parse(responseText), "colorlist");
     })
     .catch(function(error) {
