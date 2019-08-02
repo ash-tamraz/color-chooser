@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<!--
+
+  author: Adam Holm
+  file:  colorchooser.html
+  purpose: html for idea of page
+    that helps choose colorscheme
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="colorchooser.css" />
+    <script src="colorchooser.js"></script>
+    <title>Choose some colors</title>
+  </head>
+  <body>
+
+      <div class="pagination">
+        <button id="back">&laquo;</button>
+        <button id="reds" class="tagSelect">reds</button>
+        <button id="blues" class="tagSelect">blues</button>
+        <button id="greens" class="tagSelect">greens</button>
+        <button id="reset">reset</button>
+        <button id="save">save</button>
+        <button id="load">load</button>
+        <button id="forward">&raquo;</button>
+      </div> <!-- end div for pagination -->
+
+
+    <div id="container">
+<div id="colorchoose">
+      <div id="color0" class="notfilled">
+black
+      </div>
+      <div id="color1" class="notfilled">
+red
+      </div>
+      <div id="color2" class="notfilled">
+green
+      </div>
+      <div id="color3" class="notfilled">
+yellow
+      </div>
+      <div id="color4" class="notfilled">
+blue
+      </div>
+      <div id="color5" class="notfilled">
+magenta
+      </div>
+      <div id="color6" class="notfilled">
+cyan
+      </div>
+      <div id="color7" class="notfilled">
+white
+      </div>
+
+    </div><!--end colorchoose div -->
+
+      <div id="tagAndListContainer">
+
+    <div id="tagcolorlist" class="hide">
+    </div><!-- end div for tagcolorlist -->
+    <div id="colorlist">
+
+    </div><!--end colorlist div -->
+    </div><!-- id="tagAndListContainer"-->
+
+      <div id="saveAndLoad" class="hide">
+
+        <div id="userinput" class="hide">
+          <p>Give your ANSI color set a name</p>
+          <input type="text" id="name" class="hide">
+          <button id="submit" class="hide">Save</button>
+        </div><!-- end userinput div-->
+
+        <div id="userinputload" class="hide">
+          <p class="hide">Enter the name to retrieve:</p>
+          <input type="text" id="nameToLoad" class="hide">
+          <button id="loadUsrCol" class="hide">Load</button>
+        </div><!-- end userinputload div-->
+
+      </div><!-- end div id="saveAndLoad"-->
+        </div><!--end container div -->
+  </body>
+</html>
+
+<!-- end of chatit.html -->
