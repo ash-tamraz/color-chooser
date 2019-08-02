@@ -36,7 +36,7 @@ app.use(function(req, res, next) {
 });
 
 
-app.use(express.static('fpFiles'));
+app.use(express.static('includes'));
 
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
